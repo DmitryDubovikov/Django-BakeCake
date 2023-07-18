@@ -20,3 +20,11 @@ flake8 /<path-to-project>/Django-BakeCake/
 ```
 pre-commit run --all-files
 ```
+
+Для запуска Джанги создаем в корне файл .env:
+```
+SECRET_KEY=changeme
+DEBUG=False
+# DATABASE_URL=postgresql://<username>:<password>@<host>:<port>/<database_name>
+# ALLOWED_HOSTS=127.0.0.1, localhost
+```
