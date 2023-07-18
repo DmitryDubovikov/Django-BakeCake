@@ -8,9 +8,15 @@
     "python.formatting.blackArgs": ["--line-length=100"],
     "editor.formatOnSave": true,
 }
-
+```
 В PyCharm это можно сделать через .editorconfig.
 
+Чтобы отдельно запустить flake8:
 ```
-flake8 /home/dima/projects/Django-BakeCake/
+flake8 /<path-to-project>/Django-BakeCake/
+```
+
+Но лучше перед коммитом запускаем команду:
+```
+pre-commit run --all-files
 ```
