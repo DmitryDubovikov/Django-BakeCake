@@ -28,3 +28,5 @@ DEBUG=False
 # DATABASE_URL=postgresql://<username>:<password>@<host>:<port>/<database_name>
 # ALLOWED_HOSTS=127.0.0.1, localhost
 ```
+
+Для новых фич от ветки develop создаем новую ветку и в конце делаем pull-request из созданной ветки в develop. По мере надобности обновляем локальную develop командой git pull.
