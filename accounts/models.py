@@ -1,3 +1,4 @@
+import os
 import secrets
 import string
 
@@ -5,6 +6,7 @@ from django.contrib.auth.hashers import make_password
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 from django.db import models
 from phonenumber_field.modelfields import PhoneNumberField
+from twilio.rest import Client
 
 
 class UserManager(BaseUserManager):
@@ -21,14 +23,35 @@ class UserManager(BaseUserManager):
                 break
         return password
 
+    @staticmethod
+    def send_sms(phone, raw_password):
+        account_sid = os.environ["TWILIO_ACCOUNT_SID"]
+        auth_token = os.environ["TWILIO_AUTH_TOKEN"]
+        from_number = os.environ["TWILIO_PHONE_NUMBER"]
+        client = Client(account_sid, auth_token)
+
+        message = client.messages.create(
+            body=f"Hello from BakeCake. Your login is {phone}, your password is {raw_password}",
+            from_=from_number,
+            to=phone,
+        )
+
+        print(message.sid)
+
     def create_user(self, phone, password=None):
+        use_twilio = False
+
         if not phone:
             raise ValueError("Необходимо указать телефон")
+
         if not password:
-            unhashed_password = UserManager.make_random_password()
-            # TODO: send unhashed_password to user
-            print("unhashed_password: ", unhashed_password)
-            password = make_password(unhashed_password)
+            if use_twilio:
+                raw_password = UserManager.make_random_password()
+                UserManager.send_sms(phone, raw_password)
+            else:
+                raw_password = "123"
+            password = make_password(raw_password)
+
         user = self.model(phone=phone)
         user.set_password(password)
         user.save(using=self._db)
