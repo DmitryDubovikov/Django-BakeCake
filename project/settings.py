@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     # external
     # internal
     "accounts",
+    "cakes",
 ]
 
 MIDDLEWARE = [
