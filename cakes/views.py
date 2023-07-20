@@ -1,3 +1,8 @@
-from django.shortcuts import render
+# from django.shortcuts import render
 
-# Create your views here.
+# def index(request):
+#     template = 'index.html'
+#     title = 'Hello, world!'
+#     context = {'title': title,}
+#     return render(request, template, context)
+
