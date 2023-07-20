@@ -70,7 +70,7 @@ class Cake(models.Model):
     berries = models.ForeignKey('Berry', verbose_name='Ягоды', on_delete=models.CASCADE, blank=True, null=True)
     decor = models.ForeignKey('Decor', verbose_name='Декор', on_delete=models.CASCADE, blank=True, null=True)
     inscription = models.CharField('Надпись', max_length=100, blank=True, null=True)
-    image = models.ImageField('Изображение', upload_to='', blank=True, null=True, default='')
+    image = models.ImageField('Изображение', upload_to='media/', blank=True, null=True, default='media/no_image.png')
 
     class Meta:
         verbose_name = 'Торт'
@@ -83,10 +83,10 @@ class Cake(models.Model):
 
 class Order(models.Model):
     STATUSES = [
-        ('1', 'В обработке'),
-        ('2', 'Готовится'),
-        ('3', 'Передан в доставку'),
-        ('4', 'Выполнен'),
+        ('В ОБРАБОТКЕ', 'В обработке'),
+        ('ГОТОВИТСЯ', 'Готовится'),
+        ('В ДОСТАВКЕ', 'Передан в доставку'),
+        ('ВЫПОЛНЕН', 'Выполнен'),
     ]
     address = models.CharField('Адрес', max_length=150)
     date = models.DateField('Дата доставки')
@@ -110,4 +110,4 @@ class Order(models.Model):
         verbose_name_plural = 'Заказы'
 
     def __str__(self):
-        return f'{self.client.name} {self.address}'
+        return self.address
