@@ -1,5 +1,6 @@
 from django.shortcuts import render
-from .models import Berry, Decor, Topping, Shape, Level
+
+from .models import Berry, Decor, Level, Shape, Topping
 
 
 def index(request):

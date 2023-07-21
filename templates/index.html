@@ -163,21 +163,21 @@
 					</div>
 					<div class="d-flex align-items-center flex-wrap mb-3">
 						<span class="me-3 fs_40 cake_blue">Количество уровней</span>
-						{% for level in levels %}				
+						{% for level in levels %}
 							<v-field v-model="Levels" type="radio" name="lvls" id="num1" value="1" class="d-none cake__input"></v-field>
 							<label for="num1" class="mx-2 px-3 py-1 cake_grey cake__label">{{ level }}</label>
 						{% endfor %}
 					</div>
 					<div class="d-flex align-items-center flex-wrap mb-3">
 						<span class="me-3 fs_40 cake_blue">Форма</span>
-						{% for shape in shapes %}				
+						{% for shape in shapes %}
 							<v-field v-model="Form" type="radio" name="form" id="form1" value="1" class="d-none cake__input"></v-field>
 							<label for="form1" class="mx-2 px-3 py-1 cake_grey cake__label">{{ shape }}</label>
 						{% endfor %}
 					</div>
 					<div class="d-flex align-items-center flex-wrap mb-3">
 						<span class="me-3 fs_40 cake_blue">Топпинг</span>
-						{% for topping in toppings %}				
+						{% for topping in toppings %}
 							<v-field v-model="Topping" type="radio" name="topping" id="topping1" value="1" class="d-none cake__input"></v-field>
 							<label for="topping1" class="mx-2 px-3 py-1 cake_grey cake__label">{{ topping }}</label>
 						{% endfor %}
@@ -185,14 +185,14 @@
 					<h1 class="me-3 fs_40 cake_pink mb-3 mt-5">Дополнительно</h1>
 					<div class="d-flex align-items-center flex-wrap mb-3">
 						<span class="me-3 fs_40 cake_blue">Ягоды</span>
-						{% for berry in berries %}				
+						{% for berry in berries %}
 							<v-field v-model="Berries" type="radio" name="berries" id="berries1" value="1" class="d-none cake__input"></v-field>
 							<label for="berries1" class="mx-2 px-3 py-1 cake_grey cake__label">{{ berry }}</label>
 						{% endfor %}
 					</div>
 					<div class="d-flex align-items-center flex-wrap mb-3">
 						<span class="me-3 fs_40 cake_blue">Декор</span>
-						{% for decor in decors %}				
+						{% for decor in decors %}
 							<v-field v-model="Decor" type="radio" name="decor" id="decor1" value="1" class="d-none cake__input"></v-field>
 							<label for="decor1" class="mx-2 px-3 py-1 cake_grey cake__label">{{ decor }}</label>
 						{% endfor %}
