@@ -1,3 +1,4 @@
+from django.core.validators import MinValueValidator
 from django.db import models
 
 from accounts.models import User
@@ -5,7 +6,12 @@ from accounts.models import User
 
 class Level(models.Model):
     title = models.CharField("Количество уровней", max_length=30)
-    price = models.FloatField("Цена")
+    price = models.DecimalField(
+        "цена",
+        max_digits=8,
+        decimal_places=2,
+        validators=[MinValueValidator(0)]
+    )
 
     class Meta:
         verbose_name = "Уровни торта"
@@ -17,7 +23,12 @@ class Level(models.Model):
 
 class Shape(models.Model):
     title = models.CharField("Наименование формы", max_length=50)
-    price = models.FloatField("Цена")
+    price = models.DecimalField(
+        "цена",
+        max_digits=8,
+        decimal_places=2,
+        validators=[MinValueValidator(0)]
+    )
 
     class Meta:
         verbose_name = "Форма торта"
@@ -29,7 +40,12 @@ class Shape(models.Model):
 
 class Topping(models.Model):
     title = models.CharField("Топпинг", max_length=100)
-    price = models.FloatField("Цена")
+    price = models.DecimalField(
+        "цена",
+        max_digits=8,
+        decimal_places=2,
+        validators=[MinValueValidator(0)]
+    )
 
     class Meta:
         verbose_name = "Топпинг"
@@ -41,7 +57,12 @@ class Topping(models.Model):
 
 class Berry(models.Model):
     title = models.CharField("Ягода", max_length=50)
-    price = models.FloatField("Цена")
+    price = models.DecimalField(
+        "цена",
+        max_digits=8,
+        decimal_places=2,
+        validators=[MinValueValidator(0)]
+    )
 
     class Meta:
         verbose_name = "Ягода"
@@ -53,7 +74,12 @@ class Berry(models.Model):
 
 class Decor(models.Model):
     title = models.CharField("Наименование декора", max_length=50)
-    price = models.FloatField("Цена")
+    price = models.DecimalField(
+        "цена",
+        max_digits=8,
+        decimal_places=2,
+        validators=[MinValueValidator(0)]
+    )
 
     class Meta:
         verbose_name = "Декор"
@@ -107,6 +133,12 @@ class Order(models.Model):
     )
     client = models.ForeignKey(
         User, on_delete=models.CASCADE, verbose_name="Клиент", related_name="orders"
+    )
+    cake = models.OneToOneField(
+        to=Cake,
+        on_delete=models.SET_NULL,
+        null=True,
+        verbose_name='торт'
     )
 
     class Meta:
