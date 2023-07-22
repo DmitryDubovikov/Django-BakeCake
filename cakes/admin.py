@@ -1,4 +1,5 @@
 from django.contrib import admin
+from django.utils.html import format_html
 
 from .models import Berry, Cake, Decor, Level, Order, Shape, Topping
 
@@ -9,7 +10,6 @@ class OrderAdmin(admin.ModelAdmin):
         'address',
         'date',
         'time',
-        'comment',
         'status',
         'client'
     ]
@@ -27,9 +27,17 @@ class CakeAdmin(admin.ModelAdmin):
         'topping',
         'berries',
         'decor',
-        'inscription',
-        'image'
+        'inscription'
     ]
+    readonly_fields = [
+        'get_image_preview',
+    ]
+
+    def get_image_preview(self, obj):
+        if not obj.image:
+            return 'выберите картинку'
+        return format_html('<img src="{url}" style="max-height: 200px;"/>', url=obj.image.url)
+    get_image_preview.short_description = 'превью'
 
 
 @admin.register(Level)
