@@ -16,3 +16,15 @@ def index(request):
         "levels": Level.objects.all(),
     }
     return render(request, template, context)
+
+
+def lk(request):
+    template = "lk.html"
+
+    return render(request, template)
+
+
+def lk_order(request):
+    template = "lk-order.html"
+
+    return render(request, template)
