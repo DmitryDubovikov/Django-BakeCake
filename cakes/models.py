@@ -101,9 +101,7 @@ class Cake(models.Model):
         "Decor", verbose_name="Декор", on_delete=models.CASCADE, blank=True, null=True
     )
     inscription = models.CharField("Надпись", max_length=100, blank=True, null=True)
-    image = models.ImageField(
-        "Изображение", upload_to="media/", blank=True, null=True, default="media/no_image.png"
-    )
+    image = models.ImageField('Картинка', blank=True)
 
     class Meta:
         verbose_name = "Торт"
